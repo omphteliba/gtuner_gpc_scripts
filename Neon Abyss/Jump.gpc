@@ -1,0 +1,55 @@
+#pragma METAINFO("Neon Abyss", 1, 0, "omphteliba")
+
+int combo_toggle = FALSE;
+int combo_toggle_respawn = FALSE;
+
+main {
+	// press LT: jump
+    if(event_active(BUTTON_8)) {
+		combo_toggle = !combo_toggle;
+		combo_toggle_respawn = FALSE;
+	}
+	if(combo_toggle){
+		combo_run(auto_jump);
+    }
+	// press D-PAD Down
+    if(event_active(BUTTON_11)) {
+		combo_toggle = FALSE;
+		combo_toggle_respawn = !combo_toggle_respawn;
+	}
+	if(combo_toggle_respawn){
+		combo_run(auto_respawn);
+    }
+}
+
+// jump every 100ms
+combo auto_jump {
+	// press LT: jump
+	set_val(BUTTON_8,100);
+	wait(40);
+	set_val(BUTTON_8,0);
+	wait(100);
+}
+
+combo auto_respawn {
+	// press Menu
+	set_val(BUTTON_3,100);
+	wait(40);
+	set_val(BUTTON_3,0);
+	wait(100);
+	// press LB
+	set_val(BUTTON_7,100);
+	wait(40);
+	set_val(BUTTON_7,0);
+	wait(100);
+	// press D-PAD Down
+	set_val(BUTTON_11,100);
+	wait(40);
+	set_val(BUTTON_11,0);
+	wait(100);
+	// press A
+	set_val(BUTTON_16,100);
+	wait(40);
+	set_val(BUTTON_16,0);
+	wait(20000);
+}

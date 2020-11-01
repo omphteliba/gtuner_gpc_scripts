@@ -1,0 +1,9 @@
+#pragma METAINFO("FH4 Promo Fotos", 1, 0, "omphteliba")
+
+main {
+    if(event_active(BUTTON_9)) {
+            // replace Example.gmk with the name of yourfile.gmk
+            // your filename must have 8 characters or less
+            macro_run("fh4c2f2p.gmk");
+    }
+}

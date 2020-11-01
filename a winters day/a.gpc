@@ -1,0 +1,25 @@
+#pragma METAINFO("A Winters Day", 1, 0, "omphteliba")
+
+int combo_toggle = FALSE;
+int combo_toggle_respawn = FALSE;
+
+main {
+	// press A
+    if(event_active(BUTTON_16)) {
+		combo_toggle = !combo_toggle;
+		combo_toggle_respawn = FALSE;
+	}
+	if(combo_toggle){
+		combo_run(auto_jump);
+    }
+
+}
+
+// jump every 100ms
+combo auto_jump {
+	// press A
+	set_val(BUTTON_16,100);
+	wait(40);
+	set_val(BUTTON_16,0);
+	wait(100);
+}

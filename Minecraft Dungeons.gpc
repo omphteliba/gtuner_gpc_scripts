@@ -1,0 +1,66 @@
+#pragma METAINFO("MD test", 1, 0, "omphteliba")
+
+int combo_toggle = FALSE;
+
+main {
+	if(event_release(BUTTON_8)){
+		combo_toggle = !combo_toggle;
+	}
+	if(combo_toggle){
+		combo_run(auto_healing);
+		combo_run(auto_hit);
+		combo_run(auto_arrow);
+		combo_run(activate_skills);
+	}	
+}
+
+// heal every 2s
+combo auto_healing {
+	// press L: health
+	set_val(BUTTON_7,100);
+	wait(40);
+	set_val(BUTTON_7,0);
+	wait(2000);
+}
+
+// hit every 100ms
+combo auto_hit {
+	// press A: hit
+	set_val(BUTTON_15,100);
+	wait(40);
+	set_val(BUTTON_15,0);
+	wait(100);
+}
+
+// fire arrow every 7s
+combo auto_arrow {
+	// press A: hit
+	set_val(BUTTON_5,100);
+	wait(40);
+	set_val(BUTTON_5,0);
+	wait(7000);
+}
+
+// activate all skills every 4s
+combo activate_skills {
+	
+	int delay = 3000;
+	
+	// press B: skill 1
+	set_val(BUTTON_16,100);
+	wait(40);
+	set_val(BUTTON_16,0);
+	wait(delay);
+	
+	// press Y: skill 1
+	set_val(BUTTON_17,100);
+	wait(40);
+	set_val(BUTTON_17,0);
+	wait(delay);
+	
+	// press X: skill 1
+	set_val(BUTTON_14,100);
+	wait(40);
+	set_val(BUTTON_14,0);
+	wait(delay);
+}

@@ -1,0 +1,50 @@
+#pragma METAINFO("Example - LED Notifications", 1, 0, "pablogroup")
+
+#include <ps4.gph> 
+
+int  led_change_flag = 0;
+bool rappelling_flag = FALSE; // Sample
+
+main {
+
+	if((rappelling_flag || ComboAutoReloadAction) && !led_change_flag) { // Add flag or check for combo running here
+        ColorLED('B');
+		led_change_flag = 1;
+    } else if((!rappelling_flag && !ComboAutoReloadAction) && led_change_flag) { // As above, except the opposite.
+        ColorLED('G');
+		led_change_flag = 0;
+    }
+}
+
+
+void ColorLED(char Color) {
+	fix32 Color1, Color2, Color3, Color4;
+   
+	if(Color == 'B'){Color1 = 100.0;    Color2 = 0.00;    Color3 = 0.00;    Color4 = 0.00;} // Blue
+	if(Color == 'R'){Color1 = 0.00;    Color2 = 100.0;    Color3 = 0.00;    Color4 = 0.00;} // Red
+	if(Color == 'G'){Color1 = 0.00;    Color2 = 0.00;    Color3 = 100.0;    Color4 = 0.00;} // Green
+	if(Color == 'P'){Color1 = 0.00;    Color2 = 0.00;    Color3 = 0.00;    Color4 = 100.0;} // Purple
+	if(Color == 'C'){Color1 = 100.0;    Color2 = 0.00;    Color3 = 100.0;    Color4 = 0.00;} // Cyan
+	if(Color == 'W'){Color1 = 100.0;    Color2 = 100.0;    Color3 = 100.0;    Color4 = 100.0;} // White
+   
+	led_set(LED_1, Color1, 0);
+	led_set(LED_2, Color2, 0);
+	led_set(LED_3, Color3, 0);
+	led_set(LED_4, Color4, 0);
+	
+	return;
+}
+
+combo ComboAutoReloadAction {
+	// Sample
+}
+
+
+/* <shortdesc>
+<br />
+An example of how to program the RGB LED on your Titan Two.
+</shortdesc>
+
+<keywords>
+LED RGB notifications feedback
+</keywords> */
